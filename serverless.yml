@@ -20,6 +20,10 @@ service: watcher
 # Check out our docs for more details
 frameworkVersion: '2'
 
+plugins:
+  - serverless-dotenv-plugin
+  - serverless-offline
+
 provider:
   name: aws
   runtime: nodejs12.x
@@ -31,4 +35,12 @@ functions:
       - http:
           path: errors
           method: get
+          cors: true
+  
+  createErrors:
+    handler: handlers/create.handle
+    events:
+      - http:
+          path: errors
+          method: post
           cors: true
