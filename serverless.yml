@@ -44,3 +44,11 @@ functions:
           path: errors
           method: post
           cors: true
+  
+  updateErrors:
+    handler: handlers/update.handle
+    events:
+      - http:
+          path: errors/{id}
+          method: patch
+          cors: true
