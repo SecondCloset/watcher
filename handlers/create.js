@@ -3,8 +3,6 @@ const renderError = require('../utils/renderError')
 const Incident = require('../models/Incident');
 
 module.exports.handle = async (event, context, callback) => {
-  // context.callbackWaitsForEmptyEventLoop = false;
-
   connectToDb();
 
   const json = JSON.parse(event.body);
