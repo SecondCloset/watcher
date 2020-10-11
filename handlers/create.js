@@ -1,4 +1,5 @@
 const connectToDb = require('../database/db');
+const renderError = require('../utils/renderError')
 const Incident = require('../models/Incident');
 
 module.exports.handle = (event, context, callback) => {
@@ -19,10 +20,6 @@ module.exports.handle = (event, context, callback) => {
           statusCode: 200,
           body: JSON.stringify(data)
         }))
-        .catch(err => callback(err, {
-          statusCode: err.statusCode || 500,
-          headers: { 'Content-Type': 'text/plain' },
-          body: 'Failed to insert error data'
-        }))
+        .catch(err => callback(null, renderError(err.statusCode, 'Failed to insert incident data')))
     })
 }
