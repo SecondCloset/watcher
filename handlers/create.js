@@ -2,24 +2,27 @@ const connectToDb = require('../database/db');
 const renderError = require('../utils/renderError')
 const Incident = require('../models/Incident');
 
-module.exports.handle = (event, context, callback) => {
-  context.callbackWaitsForEmptyEventLoop = false;
+module.exports.handle = async (event, context, callback) => {
+  // context.callbackWaitsForEmptyEventLoop = false;
 
-  connectToDb()
-    .then(() => {
-      const json = JSON.parse(event.body);
-      const params = {
-        date: new Date(json.date),
-        message: json.message,
-        resolved: json.resolved,
-        service: json.service
-      };
-  
-      Incident.create(params)
-        .then(data => callback(null, {
-          statusCode: 200,
-          body: JSON.stringify(data)
-        }))
-        .catch(err => callback(null, renderError(err.statusCode, 'Failed to insert incident data')))
-    })
+  connectToDb();
+
+  const json = JSON.parse(event.body);
+  const params = {
+    date: new Date(json.date),
+    message: json.message,
+    resolved: json.resolved,
+    service: json.service
+  };
+
+  const incident = await Incident.create(params);
+
+  if (incident) {
+    return {
+      statusCode: 200,
+      body: JSON.stringify(incident)
+    };
+  } else {
+    return renderError(null, 'Failed to insert incident data');
+  }
 }
