@@ -29,26 +29,26 @@ provider:
   runtime: nodejs12.x
 
 functions:
-  listErrors:
+  listIncidents:
     handler: handlers/list.handle
     events:
       - http:
-          path: errors
+          path: incidents
           method: get
           cors: true
   
-  createErrors:
+  createIncident:
     handler: handlers/create.handle
     events:
       - http:
-          path: errors
+          path: incidents
           method: post
           cors: true
   
-  updateErrors:
+  updateIncident:
     handler: handlers/update.handle
     events:
       - http:
-          path: errors/{id}
+          path: incidents/{id}
           method: patch
           cors: true
