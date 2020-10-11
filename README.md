@@ -9,6 +9,5 @@ Run `serverless deploy`
 
 ### TODO ###
 1. Add TTL in Mongo for records
-2. Switch to async/await
-3. Add filtering for GET endpoint
-4. Add pagination for GET endpoint
+2. Add filtering for GET endpoint
+3. Add pagination for GET endpoint
