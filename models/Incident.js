@@ -5,7 +5,12 @@ const IncidentSchema = new mongoose.Schema({
   message: String,
   resolved: Boolean,
   service: String,
-  createdAt: { type: Date, expires: 1728000 }
+  createdAt: {
+    type: Date,
+    index: {
+      expires: '20d'
+    }
+  }
 }, { timestamps: true });
 
 module.exports = mongoose.model('Incident', IncidentSchema);
