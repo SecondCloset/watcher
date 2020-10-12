@@ -12,6 +12,9 @@ module.exports.handle = async (event, context, callback) => {
   if (incident) {
     return {
       statusCode: 200,
+      headers: {
+        'Access-Control-Allow-Origin': '*'
+      },
       body: JSON.stringify(incident)
     };
   } else {
