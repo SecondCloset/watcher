@@ -7,7 +7,9 @@ Run `serverless offline`
 ### Deploy ###
 Run `serverless deploy`
 
+## ENV
+Create a `.env` file and your `DB_HOST` variable to it which is the MongoDB host
+
 ### TODO ###
-1. Add TTL in Mongo for records
-2. Add filtering for GET endpoint
-3. Add pagination for GET endpoint
+1. Add filtering for GET endpoint
+2. Add pagination for GET endpoint
